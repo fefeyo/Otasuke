@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 
 import com.fefeyo.otasuke.R;
@@ -22,8 +21,6 @@ public class AddScheduleActivity extends AppCompatActivity implements EventDetai
 
     private ActivityAddScheduleBinding mBinding;
     private List<EventDetail> detailList;
-    private LayoutInflater mInflater;
-    private int count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,14 +29,6 @@ public class AddScheduleActivity extends AppCompatActivity implements EventDetai
         setSupportActionBar(mBinding.toolbar);
         initButtons();
         detailList = new ArrayList<>();
-        mInflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
-    }
-
-    private void createDetailForm() {
-        View detailView = mInflater.inflate(R.layout.event_detail, null);
-        detailView.setTag(count);
-        count++;
-        mBinding.detailContainer.addView(detailView);
     }
 
     private void initButtons() {
@@ -59,7 +48,8 @@ public class AddScheduleActivity extends AppCompatActivity implements EventDetai
                 R.color.colorPrimaryDark,
                 R.drawable.ic_date_range_white_24dp,
                 (v -> {
-
+                    showDetailDialog("発売日", EventType.DATE.getId());
+                    mBinding.floatingmenu.toggle();
                 })
         ));
         mBinding.floatingmenu.addButton(makeActionButton(
@@ -68,7 +58,8 @@ public class AddScheduleActivity extends AppCompatActivity implements EventDetai
                 R.color.colorPrimaryDark,
                 R.drawable.ic_date_range_white_24dp,
                 (v -> {
-
+                    showDetailDialog("ライブ", EventType.LIVE.getId());
+                    mBinding.floatingmenu.toggle();
                 })
         ));
         mBinding.floatingmenu.addButton(makeActionButton(
@@ -77,7 +68,8 @@ public class AddScheduleActivity extends AppCompatActivity implements EventDetai
                 R.color.colorPrimaryDark,
                 R.drawable.ic_date_range_white_24dp,
                 (v -> {
-
+                    showDetailDialog("リリイベ", EventType.RELEASE.getId());
+                    mBinding.floatingmenu.toggle();
                 })
         ));
         mBinding.floatingmenu.addButton(makeActionButton(
@@ -86,7 +78,8 @@ public class AddScheduleActivity extends AppCompatActivity implements EventDetai
                 R.color.colorPrimaryDark,
                 R.drawable.ic_date_range_white_24dp,
                 (v -> {
-
+                    showDetailDialog("ファンミ", EventType.FANMEETING.getId());
+                    mBinding.floatingmenu.toggle();
                 })
         ));
         mBinding.floatingmenu.addButton(makeActionButton(
@@ -95,7 +88,8 @@ public class AddScheduleActivity extends AppCompatActivity implements EventDetai
                 R.color.colorPrimaryDark,
                 R.drawable.ic_date_range_white_24dp,
                 (v -> {
-
+                    showDetailDialog("その他", EventType.OTHERS.getId());
+                    mBinding.floatingmenu.toggle();
                 })
         ));
     }
@@ -131,5 +125,6 @@ public class AddScheduleActivity extends AppCompatActivity implements EventDetai
         Log.d("備考", eventDetail.getDescription());
         Log.d("日付", eventDetail.getDate());
         Log.d("時間", eventDetail.getTime());
+        detailList.add(eventDetail);
     }
 }

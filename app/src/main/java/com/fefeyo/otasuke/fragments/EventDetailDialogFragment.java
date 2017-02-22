@@ -15,9 +15,6 @@ import android.widget.TimePicker;
 import com.fefeyo.otasuke.R;
 import com.fefeyo.otasuke.items.EventDetail;
 
-import java.text.SimpleDateFormat;
-import java.util.Locale;
-
 /**
  * Created by fefe on 2017/02/22.
  */
@@ -65,6 +62,7 @@ public class EventDetailDialogFragment extends DialogFragment {
             mListener.onCommit(eventDetail);
         }));
         builder.setNegativeButton("Cancel", null);
+
 
         return builder.create();
     }

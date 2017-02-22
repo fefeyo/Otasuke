@@ -2,8 +2,6 @@ package com.fefeyo.otasuke;
 
 import android.app.Application;
 
-import com.fefeyo.otasuke.items.EventType;
-
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
