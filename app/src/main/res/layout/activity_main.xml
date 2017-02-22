@@ -1,0 +1,53 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:title="Monthly Calendar"
+            app:titleTextColor="#fff" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.squareup.timessquare.CalendarPickerView
+                android:id="@+id/month_calendar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <ListView
+                android:id="@+id/day_event_list"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:layout_gravity="bottom"
+                android:visibility="invisible"
+                android:background="#fff"/>
+
+            <com.getbase.floatingactionbutton.FloatingActionsMenu
+                android:id="@+id/floatingmenu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:layout_margin="8dp"
+                app:fab_addButtonColorNormal="@color/colorPrimary"
+                app:fab_addButtonColorPressed="@color/colorPrimaryDark"
+                app:fab_addButtonPlusIconColor="#fff"
+                app:fab_labelsPosition="left"
+                app:fab_labelStyle="@style/menu_labels_style"
+                app:fab_addButtonSize="mini"
+                app:fab_addButtonStrokeVisible="false" />
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+</layout>
