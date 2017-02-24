@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.daimajia.androidanimations.library.Techniques;
@@ -26,6 +28,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import io.realm.EventDetailRealmProxy;
+import io.realm.EventRealmProxy;
 import io.realm.Realm;
 
 public class MainActivity extends AppCompatActivity {
@@ -49,10 +53,6 @@ public class MainActivity extends AppCompatActivity {
 
         initCalendar();
         initButtons();
-
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd, E, HH:mm:ss", Locale.JAPAN);
-        String text = sdf.format(Calendar.getInstance().getTime());
-        Log.d("現在は", text);
     }
 
     private void initCalendar() {
@@ -63,7 +63,11 @@ public class MainActivity extends AppCompatActivity {
         List<Date> checkedList = new ArrayList<>();
         for (EventDetail detail : mEventDetails) {
             try {
-                checkedList.add(mSimpleDateFormat.parse(detail.getDate()));
+                Date checkDay = mSimpleDateFormat.parse(detail.getDate());
+                int diff = checkDay.compareTo(now);
+                if (diff < 0) {
+                    checkedList.add(checkDay);
+                }
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -131,6 +135,7 @@ public class MainActivity extends AppCompatActivity {
                 (v -> {
                     Intent i = new Intent(getApplicationContext(), AddScheduleActivity.class);
                     startActivity(i);
+                    mBinding.floatingmenu.toggle();
                 })
         ));
         mBinding.floatingmenu.addButton(makeActionButton(
@@ -139,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
                 R.color.colorPrimaryDark,
                 R.drawable.ic_payment_white_24dp,
                 (v -> {
-
+                    mBinding.floatingmenu.toggle();
                 })
         ));
         mBinding.floatingmenu.addButton(makeActionButton(
@@ -148,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
                 R.color.colorPrimaryDark,
                 R.drawable.ic_date_range_white_24dp,
                 (v -> {
-
+                    mBinding.floatingmenu.toggle();
                 })
         ));
     }
@@ -164,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
         colorPressed = ContextCompat.getColor(getApplicationContext(), colorPressed);
         FloatingActionButton button = new FloatingActionButton(getApplicationContext());
         button.setTitle(title);
-        button.setSize(FloatingActionButton.SIZE_MINI);
+        button.setSize(FloatingActionButton.SIZE_NORMAL);
         button.setColorNormal(colorNormal);
         button.setColorPressed(colorPressed);
         button.setIcon(iconRes);
@@ -172,6 +177,24 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(listener);
 
         return button;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_setting:
+                Log.d("設定", "設定");
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 }

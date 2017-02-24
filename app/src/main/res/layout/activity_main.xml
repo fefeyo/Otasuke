@@ -12,7 +12,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:title="Monthly Calendar"
+            app:title="オタスケ！"
             app:titleTextColor="#fff" />
 
         <FrameLayout
@@ -43,7 +43,7 @@
                 app:fab_addButtonPlusIconColor="#fff"
                 app:fab_labelsPosition="left"
                 app:fab_labelStyle="@style/menu_labels_style"
-                app:fab_addButtonSize="mini"
+                app:fab_addButtonSize="normal"
                 app:fab_addButtonStrokeVisible="false" />
 
         </FrameLayout>

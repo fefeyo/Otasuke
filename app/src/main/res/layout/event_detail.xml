@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:padding="16dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,7 +19,9 @@
             android:id="@+id/place"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="例：横浜アリーナ" />
+            android:hint="例：横浜アリーナ"
+            android:inputType="text"
+            android:maxLines="1" />
 
         <TextView
             android:layout_width="match_parent"
@@ -31,7 +33,9 @@
             android:id="@+id/description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="例：前日物販あり" />
+            android:hint="例：前日物販あり"
+            android:inputType="text"
+            android:maxLines="1" />
 
         <TextView
             android:layout_width="match_parent"
@@ -40,23 +44,24 @@
             android:textColor="@color/primary_text" />
 
         <DatePicker
-            android:datePickerMode="spinner"
-            android:calendarViewShown="false"
             android:id="@+id/date"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:calendarViewShown="false"
+            android:datePickerMode="spinner" />
 
         <TextView
+            android:id="@+id/time_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="時間"
+            android:text="時間(開演時間等)"
             android:textColor="@color/primary_text" />
 
         <TimePicker
             android:id="@+id/time"
-            android:timePickerMode="spinner"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:timePickerMode="spinner" />
 
     </LinearLayout>
 </ScrollView>

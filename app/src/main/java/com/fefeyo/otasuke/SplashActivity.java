@@ -17,8 +17,8 @@ public class SplashActivity extends Activity {
         new Handler().postDelayed(() -> {
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
-            overridePendingTransition(0, R.anim.fadeout);
             finish();
+            overridePendingTransition(0, android.R.anim.fade_out);
         }, 1500);
     }
 
